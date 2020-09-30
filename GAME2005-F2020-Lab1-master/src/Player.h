@@ -16,13 +16,23 @@ public:
 	virtual void update() override;
 	virtual void clean() override;
 
-	void moveLeft();
-	void moveRight();
+	void setGravity(float gravity);
+	void setAngle(float angle);
+	void setSpeed(float speed);
+	void setDistance(float distance);
+	
+	float getSpeedY();
+	float getDistance();
+	float getAngle();
 
 	float checkDistance(GameObject* pGameObject);
 
 private:
-	const float SPEED = 50.0f;
+	
+	float m_distance;
+	float m_gravity;
+	float m_angle;
+	float m_speed;
 };
 
 #endif /* defined (__PLAYER__) */

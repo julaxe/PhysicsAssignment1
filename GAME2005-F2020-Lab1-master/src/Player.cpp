@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "TextureManager.h"
+#include "Util.h"
 
 Player::Player()
 {
@@ -8,8 +9,12 @@ Player::Player()
 	auto size = TextureManager::Instance()->getTextureSize("circle");
 	setWidth(size.x);
 	setHeight(size.y);
-
-	getTransform()->position = glm::vec2(400.0f, 300.0f);
+	setSpeed(0.f);
+	setAngle(0.0f);
+	setGravity(0.0f);
+	m_distance = 0;
+	
+	getTransform()->position = glm::vec2(30.0f, 600.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;
@@ -32,8 +37,17 @@ void Player::update()
 {
 	const float deltaTime = 1.0f / 60.f;
 
+	if(getRigidBody()->velocity.y > -m_speed*sin(m_angle))
+	{
+		getRigidBody()->velocity = {0.0f,0.0f};
+		m_gravity = 0.0f;
+	}
+	
 	glm::vec2 pos = getTransform()->position;
+	getRigidBody()->velocity.y += m_gravity*deltaTime;
 	pos.x += getRigidBody()->velocity.x * deltaTime;
+	m_distance += getRigidBody()->velocity.x * deltaTime;
+	
 	pos.y += getRigidBody()->velocity.y * deltaTime;
 
 	getTransform()->position = pos;
@@ -44,12 +58,43 @@ void Player::clean()
 
 }
 
-void Player::moveLeft() {
-	getRigidBody()->velocity = glm::vec2(-SPEED, 0.0f);
+void Player::setGravity(float gravity)
+{
+	m_gravity = gravity;
 }
 
-void Player::moveRight() {
-	getRigidBody()->velocity = glm::vec2(SPEED, 0.0f);
+
+void Player::setAngle(float angle)
+{
+	m_angle = angle * -Util::Deg2Rad;
+}
+
+
+void Player::setSpeed(float speed)
+{
+	m_speed = speed;
+	getRigidBody()->velocity.x = speed * cos(m_angle);
+	getRigidBody()->velocity.y = speed * sin(m_angle);
+}
+
+void Player::setDistance(float distance)
+{
+	m_distance = distance;
+}
+
+float Player::getSpeedY()
+{
+	return getRigidBody()->velocity.y;
+}
+
+float Player::getDistance()
+{
+	return  m_distance;
+}
+
+float Player::getAngle()
+{
+	return atan2(getRigidBody()->velocity.y, getRigidBody()->velocity.x)* -Util::Rad2Deg;
 }
 
 float Player::checkDistance(GameObject* pGameObject) {

@@ -8,7 +8,7 @@ Enemy::Enemy() {
 	setWidth(size.x);
 	setHeight(size.y);
 
-	getTransform()->position = glm::vec2(700.0f, 300.0f);
+	getTransform()->position = glm::vec2(515.0f, 600.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;
