@@ -1,8 +1,6 @@
 #include "PlayScene.h"
 #include "Game.h"
 #include "EventManager.h"
-#include "IMGUI_SDL/imgui_sdl.h"
-#include "IMGUI/imgui.h"
 
 PlayScene::PlayScene()
 {
