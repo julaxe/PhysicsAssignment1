@@ -97,6 +97,3 @@ float Player::getAngle()
 	return atan2(getRigidBody()->velocity.y, getRigidBody()->velocity.x)* -Util::Rad2Deg;
 }
 
-float Player::checkDistance(GameObject* pGameObject) {
-	return 0.0f;
-}

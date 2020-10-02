@@ -16,16 +16,16 @@ public:
 	virtual void update() override;
 	virtual void clean() override;
 
+	//setters
 	void setGravity(float gravity);
 	void setAngle(float angle);
 	void setSpeed(float speed);
 	void setDistance(float distance);
-	
+
+	//getters
 	float getSpeedY();
 	float getDistance();
 	float getAngle();
-
-	float checkDistance(GameObject* pGameObject);
 
 private:
 	

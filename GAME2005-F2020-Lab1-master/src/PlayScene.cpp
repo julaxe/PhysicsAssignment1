@@ -1,7 +1,8 @@
 #include "PlayScene.h"
 #include "Game.h"
 #include "EventManager.h"
-
+#include "IMGUI_SDL/imgui_sdl.h"
+#include "IMGUI/imgui.h"
 
 PlayScene::PlayScene()
 {
@@ -13,6 +14,7 @@ PlayScene::~PlayScene()
 
 void PlayScene::draw()
 {
+	
 	drawDisplayList();
 }
 
@@ -24,23 +26,8 @@ void PlayScene::update()
 	m_pAngleLabel->setText("Angle = " + std::to_string(m_pPlayer->getAngle()));
 
 	m_pInitialSpeed->setText("Initial Speed = " + std::to_string(m_InitialSpeed));
-	m_pInitialAngle->setText("Initial Angle = " + std::to_string(m_IntialAngle));
+	m_pInitialAngle->setText("Initial Angle = " + std::to_string(m_IntialAngle));	
 
-	const SDL_Color red = { 255, 0, 0, 255 };
-	const SDL_Color blue = { 0, 0, 255, 170 };
-	
-	if(m_IndexVariable)
-	{
-		m_pInitialSpeed->setColour(red);
-		m_pInitialAngle->setColour(blue);
-	}else
-	{
-		m_pInitialSpeed->setColour(blue);
-		m_pInitialAngle->setColour(red);
-	}
-	
-
-	
 }
 
 void PlayScene::clean()
@@ -50,9 +37,9 @@ void PlayScene::clean()
 
 void PlayScene::handleEvents()
 {
+
 	EventManager::Instance().update();
 	
-
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
 	{
 		//We apply initial velocity to the player
@@ -66,17 +53,18 @@ void PlayScene::handleEvents()
 	{
 		TheGame::Instance()->quit();
 	}
+	
 	//Controller for variables
 	//Right key
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_RIGHT))
 	{
 		if(m_IndexVariable)
 		{
-			m_InitialSpeed++;
+			m_InitialSpeed += 0.1f;
 		}
 		else
 		{
-			m_IntialAngle++;
+			m_IntialAngle += 0.1f;
 		}
 	}
 	//Left Key
@@ -84,11 +72,11 @@ void PlayScene::handleEvents()
 	{
 		if(m_IndexVariable)
 		{
-			m_InitialSpeed--;
+			m_InitialSpeed -= 0.1f;
 		}
 		else
 		{
-			m_IntialAngle--;
+			m_IntialAngle -= 0.1f;
 		}
 	}
 	//Up Key
