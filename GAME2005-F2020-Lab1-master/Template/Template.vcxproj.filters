@@ -108,6 +108,9 @@
     <ClCompile Include="..\src\Arrow.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Background.cpp">
+      <Filter>UI Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\StartScene.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Arrow.h">
       <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Background.h">
+      <Filter>UI Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

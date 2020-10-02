@@ -4,9 +4,9 @@
 
 Player::Player()
 {
-	TextureManager::Instance()->load("../Assets/textures/circle.png", "circle");
+	TextureManager::Instance()->load("../Assets/sprites/teste.png", "player");
 	
-	auto size = TextureManager::Instance()->getTextureSize("circle");
+	auto size = TextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
 	setHeight(size.y);
 	setSpeed(0.f);
@@ -30,7 +30,7 @@ void Player::draw()
 	const auto x = getTransform()->position.x;
 	const auto y = getTransform()->position.y;
 
-	TextureManager::Instance()->draw("circle", x, y, 0, 255, true);
+	TextureManager::Instance()->draw("player", x, y, 0, 255, true);
 }
 
 void Player::update()
@@ -51,6 +51,8 @@ void Player::update()
 	pos.y += getRigidBody()->velocity.y * deltaTime;
 
 	getTransform()->position = pos;
+
+	getTransform()->rotation = glm::vec2(cos(m_angle), sin(m_angle));
 }
 
 void Player::clean()

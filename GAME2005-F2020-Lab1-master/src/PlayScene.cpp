@@ -78,13 +78,13 @@ void PlayScene::handleEvents()
 		}
 	}
 	//Up Key
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_UP))
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_UP) && !m_IndexVariable)
 	{
 		m_IndexVariable = !m_IndexVariable;
 		m_pArrow->changeTarget(m_IndexVariable);
 	}
 	//Down Key
-	else if(EventManager::Instance().isKeyDown(SDL_SCANCODE_DOWN))
+	else if(EventManager::Instance().isKeyDown(SDL_SCANCODE_DOWN) && m_IndexVariable)
 	{
 		m_IndexVariable = !m_IndexVariable;
 		m_pArrow->changeTarget(m_IndexVariable);
@@ -96,8 +96,11 @@ void PlayScene::start()
 {
 	m_IntialAngle = 15.9077f;
 	m_InitialSpeed = 95.0f;
+	//Background
+
 	// Player Sprite
 	m_pPlayer = new Player();
+	//m_pPlayer->getTransform()->scale = glm::vec2(10.0f, 10.0f);
 	addChild(m_pPlayer);
 	
 	// Enemy Sprite

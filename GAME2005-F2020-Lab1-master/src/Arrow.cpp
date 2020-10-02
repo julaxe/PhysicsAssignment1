@@ -10,7 +10,7 @@ Arrow::Arrow()
 	setWidth(size.x);
 	setHeight(size.y);
 	
-	getTransform()->position = glm::vec2(600.0f, 40.0f);
+	getTransform()->position = glm::vec2(600.0f, 80.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;

@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "glm/gtx/string_cast.hpp"
 #include "EventManager.h"
+#include "Config.h"
 
 StartScene::StartScene()
 {
@@ -45,23 +46,26 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
-	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("START SCENE", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
-	m_pStartLabel->setParent(this);
-	addChild(m_pStartLabel);
+	m_pBackground = new Background();
+	addChild(m_pBackground);
 
-	m_pInstructionsLabel = new Label("Press 1 to Play", "Consolas", 40, blue, glm::vec2(400.0f, 120.0f));
-	m_pInstructionsLabel->setParent(this);
-	addChild(m_pInstructionsLabel);
+	//const SDL_Color blue = { 0, 0, 255, 255 };
+	//m_pStartLabel = new Label("START SCENE", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
+	//m_pStartLabel->setParent(this);
+	//addChild(m_pStartLabel);
+
+	//m_pInstructionsLabel = new Label("Press 1 to Play", "Consolas", 40, blue, glm::vec2(400.0f, 120.0f));
+	//m_pInstructionsLabel->setParent(this);
+	//addChild(m_pInstructionsLabel);
 
 
 	m_pShip = new Ship();
-	m_pShip->getTransform()->position = glm::vec2(400.0f, 300.0f); 
+	//m_pShip->getTransform()->position = glm::vec2(400.0f, 300.0f); 
 	addChild(m_pShip); 
 
 	// Start Button
 	m_pStartButton = new Button();
-	m_pStartButton->getTransform()->position = glm::vec2(400.0f, 400.0f); 
+	m_pStartButton->getTransform()->position = glm::vec2(Config::SCREEN_WIDTH>>1, 600.0f); 
 
 	m_pStartButton->addEventListener(CLICK, [&]()-> void
 	{

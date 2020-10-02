@@ -3,16 +3,17 @@
 #include "PlayScene.h"
 #include "TextureManager.h"
 #include "Util.h"
+#include "Config.h"
 
 Ship::Ship() : m_maxSpeed(10.0f)
 {
-	TextureManager::Instance()->load("../Assets/textures/ship3.png","ship");
+	TextureManager::Instance()->load("../Assets/sprites/STARWARSlogo.png","ship");
 
 	auto size = TextureManager::Instance()->getTextureSize("ship");
 	setWidth(size.x);
 	setHeight(size.y);
 
-	getTransform()->position = glm::vec2(400.0f, 300.0f);
+	getTransform()->position = glm::vec2(Config::SCREEN_WIDTH >> 1 , Config::SCREEN_HEIGHT >> 1);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;
