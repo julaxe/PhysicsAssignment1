@@ -171,7 +171,7 @@ void PlayScene::start()
 	addChild(m_pStartButton);
 
 	//Reset Button
-	m_pResetButton = new Button();
+	m_pResetButton = new ResetButton();
 	m_pResetButton->getTransform()->position = glm::vec2(900.0f, 500.0f);
 	
 	m_pResetButton->addEventListener(CLICK, [&]()-> void

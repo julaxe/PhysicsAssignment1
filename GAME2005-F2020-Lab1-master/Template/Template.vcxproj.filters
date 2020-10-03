@@ -114,6 +114,9 @@
     <ClCompile Include="..\src\Battlefield.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ResetButton.cpp">
+      <Filter>UI Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\StartScene.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Battlefield.h">
       <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ResetButton.h">
+      <Filter>UI Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

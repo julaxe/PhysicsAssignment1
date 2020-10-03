@@ -6,10 +6,12 @@
 #include "Plane.h"
 #include "Player.h"
 #include "Button.h"
+#include "ResetButton.h"
 #include "Enemy.h"
 #include "Arrow.h"
 #include "Target.h"
 #include "Battlefield.h"
+
 
 class PlayScene : public Scene
 {
@@ -55,7 +57,7 @@ private:
 	Label* m_pInstructions;
 
 	Button* m_pStartButton;
-	Button* m_pResetButton;
+	ResetButton* m_pResetButton;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
