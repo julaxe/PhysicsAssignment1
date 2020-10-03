@@ -1,10 +1,12 @@
 #include "Player.h"
+
+#include "Renderer.h"
 #include "TextureManager.h"
 #include "Util.h"
 
 Player::Player()
 {
-	TextureManager::Instance()->load("../Assets/sprites/teste.png", "player");
+	TextureManager::Instance()->load("../Assets/sprites/Granade.png", "player");
 	
 	auto size = TextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
@@ -14,7 +16,7 @@ Player::Player()
 	setGravity(0.0f);
 	m_distance = 0;
 	
-	getTransform()->position = glm::vec2(30.0f, 600.0f);
+	getTransform()->position = glm::vec2(30.0f, 400.f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;
@@ -29,8 +31,11 @@ void Player::draw()
 	// alias for x and y
 	const auto x = getTransform()->position.x;
 	const auto y = getTransform()->position.y;
+	const SDL_Rect src = {0.f,0,512,512};
+	const SDL_Rect dst = {x,y,100,100};
+	
 
-	TextureManager::Instance()->draw("player", x, y, 0, 255, true);
+	SDL_RenderCopyEx(Renderer::Instance()->getRenderer(),TextureManager::Instance()->getTexture("player"),&src,&dst, 0 , nullptr, SDL_FLIP_NONE);
 }
 
 void Player::update()

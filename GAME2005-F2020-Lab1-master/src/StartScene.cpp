@@ -49,18 +49,17 @@ void StartScene::start()
 	m_pBackground = new Background();
 	addChild(m_pBackground);
 
-	//const SDL_Color blue = { 0, 0, 255, 255 };
-	//m_pStartLabel = new Label("START SCENE", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
-	//m_pStartLabel->setParent(this);
-	//addChild(m_pStartLabel);
+	const SDL_Color blue = { 0, 0, 255, 255 };
+	m_pName1 = new Label("Lucas Krespi - 101289546", "Consolas", 40, blue, glm::vec2(300.f, 40.0f));
+	m_pName1->setParent(this);
+	addChild(m_pName1);
 
-	//m_pInstructionsLabel = new Label("Press 1 to Play", "Consolas", 40, blue, glm::vec2(400.0f, 120.0f));
-	//m_pInstructionsLabel->setParent(this);
-	//addChild(m_pInstructionsLabel);
+	m_pName2 = new Label("Julian Escobar - 101286557", "Consolas", 40, blue, glm::vec2(300.f, 80.0f));
+	m_pName2->setParent(this);
+	addChild(m_pName2);
 
 
 	m_pShip = new Ship();
-	//m_pShip->getTransform()->position = glm::vec2(400.0f, 300.0f); 
 	addChild(m_pShip); 
 
 	// Start Button

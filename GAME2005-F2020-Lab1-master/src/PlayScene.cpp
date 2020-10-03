@@ -97,15 +97,18 @@ void PlayScene::start()
 	m_IntialAngle = 15.9077f;
 	m_InitialSpeed = 95.0f;
 	//Background
-
-	// Player Sprite
-	m_pPlayer = new Player();
-	//m_pPlayer->getTransform()->scale = glm::vec2(10.0f, 10.0f);
-	addChild(m_pPlayer);
 	
 	// Enemy Sprite
 	m_pEnemy = new Enemy();
 	addChild(m_pEnemy);
+
+	// Chewbaca Sprite
+	m_pChewbaca = new Target();
+	addChild(m_pChewbaca);
+	
+	// Player Sprite
+	m_pPlayer = new Player();
+	addChild(m_pPlayer);
 
 	//Arrow Sprite
 	m_pArrow = new Arrow();
@@ -165,7 +168,7 @@ void PlayScene::start()
 	m_pResetButton->addEventListener(CLICK, [&]()-> void
 	{
 		m_pResetButton->setActive(false);
-		m_pPlayer->getTransform()->position = glm::vec2(30.0f, 600.0f);
+		m_pPlayer->getTransform()->position = glm::vec2(30.0f, 400.f);
 		m_pPlayer->getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 		m_pPlayer->setGravity(0.0f);
 		m_pPlayer->setDistance(0.0f);

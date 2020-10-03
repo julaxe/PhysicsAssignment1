@@ -8,6 +8,7 @@
 #include "Button.h"
 #include "Enemy.h"
 #include "Arrow.h"
+#include "Target.h"
 
 
 class PlayScene : public Scene
@@ -35,6 +36,7 @@ private:
 	glm::vec2 m_mousePosition;
 
 	Plane* m_pPlaneSprite;
+	Target* m_pChewbaca;
 	Player* m_pPlayer;
 	Enemy* m_pEnemy;
 	Arrow* m_pArrow;
