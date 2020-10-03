@@ -9,7 +9,7 @@
 #include "Enemy.h"
 #include "Arrow.h"
 #include "Target.h"
-
+#include "Battlefield.h"
 
 class PlayScene : public Scene
 {
@@ -35,6 +35,7 @@ private:
 	
 	glm::vec2 m_mousePosition;
 
+	Battlefield* m_pBattlefield;
 	Plane* m_pPlaneSprite;
 	Target* m_pChewbaca;
 	Player* m_pPlayer;
@@ -50,8 +51,8 @@ private:
 	Label* m_pInitialSpeed;
 	Label* m_pInitialAngle;
 
-	//not for now
-	Label* m_pInitialDistance;
+	//Instructions labels
+	Label* m_pInstructions;
 
 	Button* m_pStartButton;
 	Button* m_pResetButton;

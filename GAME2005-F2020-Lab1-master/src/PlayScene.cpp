@@ -96,7 +96,10 @@ void PlayScene::start()
 {
 	m_IntialAngle = 15.9077f;
 	m_InitialSpeed = 95.0f;
+	
 	//Background
+	m_pBattlefield = new Battlefield();
+	addChild(m_pBattlefield);
 	
 	// Enemy Sprite
 	m_pEnemy = new Enemy();
@@ -115,7 +118,7 @@ void PlayScene::start()
 	addChild(m_pArrow);
 
 	// Labels
-	const SDL_Color blue = { 0, 0, 255, 255 };
+	const SDL_Color blue = { 255, 255, 255, 255 };
 	m_pSpeedLabel = new Label("SpeedY = ", "Consolas", 40, blue, glm::vec2(300.0f, 40.0f));
 	m_pSpeedLabel->setParent(this);
 	addChild(m_pSpeedLabel);
@@ -137,6 +140,12 @@ void PlayScene::start()
 	m_pInitialAngle->setParent(this);
 	addChild(m_pInitialAngle);
 
+	//Instruction label
+	m_pInstructions = new Label("Use the arrow keys to navigate the menu and change the variables, then press the start button ",
+		"Consolas", 20, blue, glm::vec2(Config::SCREEN_WIDTH>>1, Config::SCREEN_HEIGHT-80.0f));
+	m_pInstructions->setParent(this);
+	addChild(m_pInstructions);
+	
 	//Start Button
 	m_pStartButton = new Button();
 	m_pStartButton->getTransform()->position = glm::vec2(900.0f, 400.0f); 

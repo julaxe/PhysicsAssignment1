@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Arrow.cpp" />
     <ClCompile Include="..\src\Background.cpp" />
+    <ClCompile Include="..\src\Battlefield.cpp" />
     <ClCompile Include="..\src\Button.cpp" />
     <ClCompile Include="..\src\CollisionManager.cpp" />
     <ClCompile Include="..\src\Enemy.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="..\src\Animation.h" />
     <ClInclude Include="..\src\Arrow.h" />
     <ClInclude Include="..\src\Background.h" />
+    <ClInclude Include="..\src\Battlefield.h" />
     <ClInclude Include="..\src\Button.h" />
     <ClInclude Include="..\src\CollisionManager.h" />
     <ClInclude Include="..\src\CollisionShape.h" />
