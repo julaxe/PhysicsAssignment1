@@ -40,7 +40,7 @@ private:
 	Battlefield* m_pBattlefield;
 	Plane* m_pPlaneSprite;
 	Target* m_pChewbaca;
-	Player* m_pPlayer;
+	Player* m_pGranade;
 	Enemy* m_pEnemy;
 	Arrow* m_pArrow;
 	
@@ -56,7 +56,7 @@ private:
 	//Instructions labels
 	Label* m_pInstructions;
 
-	Button* m_pStartButton;
+	Button* m_pThrowButton;
 	ResetButton* m_pResetButton;
 };
 

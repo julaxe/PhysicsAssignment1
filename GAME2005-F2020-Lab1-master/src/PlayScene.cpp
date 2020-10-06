@@ -19,9 +19,9 @@ void PlayScene::draw()
 void PlayScene::update()
 {
 	updateDisplayList();
-	m_pSpeedLabel->setText("Speed Y = " + std::to_string(m_pPlayer->getSpeedY()));
-	m_pDistanceLabel->setText("Distance = " + std::to_string(m_pPlayer->getDistance()));
-	m_pAngleLabel->setText("Angle = " + std::to_string(m_pPlayer->getAngle()));
+	m_pSpeedLabel->setText("Speed Y = " + std::to_string(m_pGranade->getSpeedY()));
+	m_pDistanceLabel->setText("Distance = " + std::to_string(m_pGranade->getDistance()));
+	m_pAngleLabel->setText("Angle = " + std::to_string(m_pGranade->getAngle()));
 
 	m_pInitialSpeed->setText("Initial Speed = " + std::to_string(m_InitialSpeed));
 	m_pInitialAngle->setText("Initial Angle = " + std::to_string(m_IntialAngle));	
@@ -37,15 +37,6 @@ void PlayScene::handleEvents()
 {
 
 	EventManager::Instance().update();
-	
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
-	{
-		//We apply initial velocity to the player
-		m_pPlayer->setAngle(m_IntialAngle);
-		m_pPlayer->setSpeed(m_InitialSpeed);
-		m_pPlayer->setGravity(GRAVITY);
-	}
-	
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
@@ -94,6 +85,7 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
+	//Initial values for the specific physic problem - test 
 	m_IntialAngle = 15.9077f;
 	m_InitialSpeed = 95.0f;
 	
@@ -110,8 +102,8 @@ void PlayScene::start()
 	addChild(m_pChewbaca);
 	
 	// Player Sprite
-	m_pPlayer = new Player();
-	addChild(m_pPlayer);
+	m_pGranade = new Player();
+	addChild(m_pGranade);
 
 	//Arrow Sprite
 	m_pArrow = new Arrow();
@@ -141,34 +133,34 @@ void PlayScene::start()
 	addChild(m_pInitialAngle);
 
 	//Instruction label
-	m_pInstructions = new Label("Use the arrow keys to navigate the menu and change the variables, then press the start button ",
+	m_pInstructions = new Label("Use the arrow keys to navigate the menu and change the variables, then press the throw button ",
 		"Consolas", 20, blue, glm::vec2(Config::SCREEN_WIDTH>>1, Config::SCREEN_HEIGHT-80.0f));
 	m_pInstructions->setParent(this);
 	addChild(m_pInstructions);
 	
-	//Start Button
-	m_pStartButton = new Button();
-	m_pStartButton->getTransform()->position = glm::vec2(900.0f, 400.0f); 
+	//Throw Button
+	m_pThrowButton = new Button();
+	m_pThrowButton->getTransform()->position = glm::vec2(900.0f, 400.0f); 
 
-	m_pStartButton->addEventListener(CLICK, [&]()-> void
+	m_pThrowButton->addEventListener(CLICK, [&]()-> void
 	{
-		m_pStartButton->setActive(false);
-		m_pPlayer->setAngle(m_IntialAngle);
-		m_pPlayer->setSpeed(m_InitialSpeed);
-		m_pPlayer->setGravity(GRAVITY);
+		m_pThrowButton->setActive(false);
+		m_pGranade->setAngle(m_IntialAngle); // in degrees
+		m_pGranade->setSpeed(m_InitialSpeed);
+		m_pGranade->setGravity(GRAVITY);
 		
 	});
-	
-	m_pStartButton->addEventListener(MOUSE_OVER, [&]()->void
+
+	m_pThrowButton->addEventListener(MOUSE_OVER, [&]()->void
 	{
-		m_pStartButton->setAlpha(128);
+		m_pThrowButton->setAlpha(128);
 	});
 
-	m_pStartButton->addEventListener(MOUSE_OUT, [&]()->void
+	m_pThrowButton->addEventListener(MOUSE_OUT, [&]()->void
 	{
-		m_pStartButton->setAlpha(255);
+		m_pThrowButton->setAlpha(255);
 	});
-	addChild(m_pStartButton);
+	addChild(m_pThrowButton);
 
 	//Reset Button
 	m_pResetButton = new ResetButton();
@@ -177,10 +169,10 @@ void PlayScene::start()
 	m_pResetButton->addEventListener(CLICK, [&]()-> void
 	{
 		m_pResetButton->setActive(false);
-		m_pPlayer->getTransform()->position = glm::vec2(30.0f, 400.f);
-		m_pPlayer->getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
-		m_pPlayer->setGravity(0.0f);
-		m_pPlayer->setDistance(0.0f);
+		m_pGranade->getTransform()->position = glm::vec2(30.0f, 400.f);
+		m_pGranade->getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
+		m_pGranade->setGravity(0.0f);
+		m_pGranade->setDistance(0.0f);
 		
 	});
 	

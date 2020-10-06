@@ -11,9 +11,9 @@ Player::Player()
 	auto size = TextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
 	setHeight(size.y);
-	setSpeed(0.f);
-	setAngle(0.0f);
-	setGravity(0.0f);
+	setSpeed(0.f); //initial speed
+	setAngle(0.0f); //initial angle
+	setGravity(0.0f); //gravity
 	m_distance = 0;
 	
 	getTransform()->position = glm::vec2(30.0f, 400.f);
@@ -40,24 +40,39 @@ void Player::draw()
 
 void Player::update()
 {
+	//define deltatime
 	const float deltaTime = 1.0f / 60.f;
 
+	//Check if Throw finished.
+	//if velocity Y is less than the start velocity (but negative) stop.
 	if(getRigidBody()->velocity.y > -m_speed*sin(m_angle))
 	{
 		getRigidBody()->velocity = {0.0f,0.0f};
 		m_gravity = 0.0f;
+		return;
 	}
-	
-	glm::vec2 pos = getTransform()->position;
+
+	//temporal variable for position (new position)
+	glm::vec2 temppos = getTransform()->position;
+
+	//apply gravity
 	getRigidBody()->velocity.y += m_gravity*deltaTime;
-	pos.x += getRigidBody()->velocity.x * deltaTime;
-	m_distance += getRigidBody()->velocity.x * deltaTime;
+
+	//apply velocity to position in the Y Axis
+	temppos.y += getRigidBody()->velocity.y * deltaTime;
 	
-	pos.y += getRigidBody()->velocity.y * deltaTime;
+	//apply velocity to position in the X axis
+	temppos.x += getRigidBody()->velocity.x * deltaTime;
 
-	getTransform()->position = pos;
+	//Label - update distance
+	m_distance += getRigidBody()->velocity.x * deltaTime;
 
-	getTransform()->rotation = glm::vec2(cos(m_angle), sin(m_angle));
+	
+
+	//Update actual position with the new one.
+	getTransform()->position = temppos;
+
+	
 }
 
 void Player::clean()
@@ -73,6 +88,7 @@ void Player::setGravity(float gravity)
 
 void Player::setAngle(float angle)
 {
+	//degree to rad
 	m_angle = angle * -Util::Deg2Rad;
 }
 
